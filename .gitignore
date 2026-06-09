@@ -16,3 +16,6 @@ src/main/java/**
 
 # OS
 .DS_Store
+
+# Testing
+run/

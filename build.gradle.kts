@@ -428,3 +428,34 @@ tasks.register("setup") {
         println("  4. Run:            java -Xmx4G -Xms2G --enable-preview -jar build/libs/hephaestus-${version}.jar nogui")
     }
 }
+
+// ── Task: Run Server ────────────────────────────────────────────────────────
+
+tasks.register<JavaExec>("runServer") {
+    group = "hephaestus"
+    description = "Builds and runs the patched Minecraft server inside run/."
+ 
+    dependsOn("buildServer")
+ 
+    val runDir    = layout.projectDirectory.dir("run").asFile
+    val runJar    = File(runDir, "hephaestus-${version}.jar")
+    val eulaFile  = File(runDir, "eula.txt")
+    val builtJar  = layout.buildDirectory.file("libs/hephaestus-${version}.jar")
+ 
+    doFirst {
+        runDir.mkdirs()
+        builtJar.get().asFile.copyTo(runJar, overwrite = true)
+        if (!eulaFile.exists()) {
+            eulaFile.writeText("eula=true\n")
+            println("  Created run/eula.txt")
+        }
+        println("  Starting Hephaestus server (${version}) in run/...")
+    }
+ 
+    workingDir = runDir
+    classpath  = files(runJar)
+    mainClass.set("net.minecraft.bundler.Main")
+    jvmArgs = listOf("-Xmx4G", "-Xms2G", "--enable-preview")
+    args    = listOf("nogui")
+    standardInput = System.`in`
+}
