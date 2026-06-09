@@ -415,7 +415,7 @@ tasks.build {
 tasks.register("setup") {
     group = "hephaestus"
     description = "Downloads, extracts, and decompiles the server. Run this first."
-    dependsOn("decompile")
+    dependsOn("applyPatches")
 
     doLast {
         println("")
