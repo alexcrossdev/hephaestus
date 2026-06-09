@@ -1,0 +1,18 @@
+# Gradle
+.gradle/
+build/
+
+# Hephaestus cache (downloaded jars + decompiled sources)
+# Remove .hephaestus/sources from this list if you want to commit decompiled sources
+.hephaestus/
+
+# Used sources
+src/main/java/**
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store

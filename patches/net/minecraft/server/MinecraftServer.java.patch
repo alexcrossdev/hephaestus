@@ -1,0 +1,11 @@
+--- /home/alex/active/projects/alexcrossdev/hephaestus/.hephaestus/sources/net/minecraft/server/MinecraftServer.java	2026-06-08 22:10:49.795945138 -0400
++++ /home/alex/active/projects/alexcrossdev/hephaestus/src/main/java/net/minecraft/server/MinecraftServer.java	2026-06-08 22:39:57.590926469 -0400
+@@ -1209,7 +1209,7 @@
+    }
+ 
+    public String getServerModName() {
+-      return "vanilla";
++      return "hephaestus";
+    }
+ 
+    public ServerClockManager clockManager() {
