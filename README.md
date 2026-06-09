@@ -14,28 +14,33 @@ A Gradle-based pipeline for decompiling, patching, and recompiling the Minecraft
 ./gradlew setup
 
 # 2. Copy a class you want to patch into src/main/java
-./gradlew patch --class net/minecraft/server/MinecraftServer
+./gradlew patch -Pclass=net/minecraft/server/MinecraftServer
 
 # 3. Edit it
-nano src/main/java/net/minecraft/server/MinecraftServer.java
+nvim src/main/java/net/minecraft/server/MinecraftServer.java
 
 # 4. Build the patched server jar
 ./gradlew buildServer
 
 # 5. Run it
 java -Xmx4G -Xms2G --enable-preview -jar build/libs/hephaestus-26.1.2.jar nogui
+
+# 6. Patch it
+./gradlew createPatch -Pclass=net/minecraft/server/MinecraftServer
 ```
 
 ## Tasks
 
 | Task | Description |
 |---|---|
-| `setup` | Downloads, extracts, and decompiles everything. Run this first. |
+| `setup` | Downloads, extracts, decompiles, and patches everything. Run this first. |
 | `downloadServer` | Downloads the Mojang server jar. |
 | `downloadVineflower` | Downloads the Vineflower decompiler. |
 | `extractServer` | Extracts the inner server jar and bundled libraries. |
 | `decompile` | Decompiles the server into readable Java sources. |
-| `patch --class <path>` | Copies a class from decompiled sources into `src/main/java` for editing. |
+| `patch -Pclass=<path>` | Copies a class from decompiled sources into `src/main/java` for editing. |
+| `createPatch -Pclass=<path>` | Create patch file in `patchs` for saving state. |
+| `applyPatches` | Applies all patches in `patches` to the decompiled source code. |
 | `patches` | Lists all currently patched classes. |
 | `buildServer` | Compiles your patches and assembles the final server jar. |
 
