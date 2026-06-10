@@ -344,7 +344,7 @@ tasks.register("patches") {
         val srcDir = layout.projectDirectory.dir("src/main/java").asFile
         if (!srcDir.exists() || srcDir.walkTopDown().filter { it.extension == "java" }.none()) {
             println("  No patched classes yet.")
-            println("  Use: ./gradlew patch --class net/minecraft/server/MinecraftServer")
+            println("  Use: ./gradlew patch -Pclass=net/minecraft/server/MinecraftServer")
         } else {
             println("  Patched classes:")
             srcDir.walkTopDown()
@@ -422,7 +422,7 @@ tasks.register("setup") {
         println("  ✓ Hephaestus setup complete!")
         println("")
         println("  Next steps:")
-        println("  1. Patch a class:  ./gradlew patch --class net/minecraft/server/MinecraftServer")
+        println("  1. Patch a class:  ./gradlew patch -Pclass=net/minecraft/server/MinecraftServer")
         println("  2. Edit the file in src/main/java/")
         println("  3. Build:          ./gradlew buildServer")
         println("  4. Run:            java -Xmx4G -Xms2G --enable-preview -jar build/libs/hephaestus-${version}.jar nogui")
@@ -433,15 +433,15 @@ tasks.register("setup") {
 
 tasks.register<JavaExec>("runServer") {
     group = "hephaestus"
-    description = "Builds and runs the patched Minecraft server inside run/."
- 
+    description = "Builds and runs the patched Minecraft server inside run."
+
     dependsOn("buildServer")
- 
+
     val runDir    = layout.projectDirectory.dir("run").asFile
     val runJar    = File(runDir, "hephaestus-${version}.jar")
     val eulaFile  = File(runDir, "eula.txt")
     val builtJar  = layout.buildDirectory.file("libs/hephaestus-${version}.jar")
- 
+
     doFirst {
         runDir.mkdirs()
         builtJar.get().asFile.copyTo(runJar, overwrite = true)
@@ -451,7 +451,7 @@ tasks.register<JavaExec>("runServer") {
         }
         println("  Starting Hephaestus server (${version}) in run/...")
     }
- 
+
     workingDir = runDir
     classpath  = files(runJar)
     mainClass.set("net.minecraft.bundler.Main")

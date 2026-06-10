@@ -43,6 +43,7 @@ java -Xmx4G -Xms2G --enable-preview -jar build/libs/hephaestus-26.1.2.jar nogui
 | `applyPatches` | Applies all patches in `patches` to the decompiled source code. |
 | `patches` | Lists all currently patched classes. |
 | `buildServer` | Compiles your patches and assembles the final server jar. |
+| `runServer` | Builds and runs the patched Minecraft server inside run. |
 
 ## How it works
 
@@ -60,7 +61,3 @@ server_jar_url=https://piston-data.mojang.com/...
 ```
 
 Delete `.hephaestus/` and re-run `./gradlew setup`.
-
-## License
-
-MIT
