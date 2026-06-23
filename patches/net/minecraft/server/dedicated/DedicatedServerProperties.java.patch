@@ -1,0 +1,20 @@
+--- .hephaestus/sources/net/minecraft/server/dedicated/DedicatedServerProperties.java	2026-06-08 22:52:13.275918612 -0400
++++ src/main/java/net/minecraft/server/dedicated/DedicatedServerProperties.java	2026-06-22 20:13:35.118973320 -0400
+@@ -57,7 +57,7 @@
+    public final boolean preventProxyConnections = this.get("prevent-proxy-connections", false);
+    public final String serverIp = this.get("server-ip", "");
+    public final Settings<DedicatedServerProperties>.MutableValue<Boolean> allowFlight = this.getMutable("allow-flight", false);
+-   public final Settings<DedicatedServerProperties>.MutableValue<String> motd = this.getMutable("motd", "A Minecraft Server");
++   public final Settings<DedicatedServerProperties>.MutableValue<String> motd = this.getMutable("motd", "A Hephaestus Server");
+    public final boolean codeOfConduct = this.get("enable-code-of-conduct", false);
+    public final String bugReportLink = this.get("bug-report-link", "");
+    public final Settings<DedicatedServerProperties>.MutableValue<Boolean> forceGameMode = this.getMutable("force-gamemode", false);
+@@ -270,7 +270,7 @@
+             RegistryOps<JsonElement> ops = registries.createSerializationContext(JsonOps.INSTANCE);
+             Optional<FlatLevelGeneratorSettings> parsedSettings = FlatLevelGeneratorSettings.CODEC
+                .parse(new Dynamic(ops, this.generatorSettings()))
+-               .resultOrPartial(DedicatedServerProperties.LOGGER::error);
++               .resultOrPartial(error -> DedicatedServerProperties.LOGGER.error(error.toString()));
+             if (parsedSettings.isPresent()) {
+                return worldDimensions.replaceOverworldGenerator(registries, new FlatLevelSource(parsedSettings.get()));
+             }

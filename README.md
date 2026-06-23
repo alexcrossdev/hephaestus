@@ -61,3 +61,12 @@ server_jar_url=https://piston-data.mojang.com/...
 ```
 
 Delete `.hephaestus/` and re-run `./gradlew setup`.
+
+
+## Notes
+
+Vineflower doesn't always decompile the code into a perfect state so manual fixes may need to be
+implemented to newly patches classes.
+
+### Some issues include ...
+- Generic type inference mismatches (you can see an example in [DedicatedServerProperties](patches/net/minecraft/server/dedicated/DedicatedServerProperties.java.patch))
