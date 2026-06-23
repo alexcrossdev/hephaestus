@@ -23,7 +23,7 @@ nvim src/main/java/net/minecraft/server/MinecraftServer.java
 ./gradlew buildServer
 
 # 5. Run it
-java -Xmx4G -Xms2G --enable-preview -jar build/libs/hephaestus-26.1.2.jar nogui
+./gradlew runServer
 
 # 6. Patch it
 ./gradlew createPatch -Pclass=net/minecraft/server/MinecraftServer
