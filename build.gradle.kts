@@ -247,8 +247,8 @@ tasks.register<Exec>("createPatch") {
         commandLine(
             "diff",
             "-u",
-            original.absolutePath,
-            modified.absolutePath
+            project.relativePath(original),
+            project.relativePath(modified)
         )
 
         standardOutput = patch.outputStream()
