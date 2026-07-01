@@ -19,3 +19,9 @@ src/main/java/**
 
 # Testing
 run/
+
+# Jdtls
+.classpath
+.project
+bin/
+.settings/
