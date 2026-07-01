@@ -1,11 +1,20 @@
 --- .hephaestus/sources/net/minecraft/server/MinecraftServer.java	2026-06-08 22:52:13.274918612 -0400
-+++ src/main/java/net/minecraft/server/MinecraftServer.java	2026-06-08 22:52:13.331062475 -0400
-@@ -1209,7 +1209,7 @@
++++ src/main/java/net/minecraft/server/MinecraftServer.java	2026-06-30 19:36:00.342413068 -0400
+@@ -12,6 +12,8 @@
+ import com.mojang.logging.LogUtils;
+ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+ import it.unimi.dsi.fastutil.objects.ObjectArraySet;
++import me.alexcrossdev.hephaestus.HephaestusInfo;
++
+ import java.io.File;
+ import java.io.IOException;
+ import java.io.Writer;
+@@ -1209,7 +1211,7 @@
     }
  
     public String getServerModName() {
 -      return "vanilla";
-+      return "hephaestus";
++      return HephaestusInfo.FORMATTED_BRAND;
     }
  
     public ServerClockManager clockManager() {

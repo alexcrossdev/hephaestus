@@ -1,0 +1,21 @@
+--- .hephaestus/sources/net/minecraft/commands/Commands.java	2026-06-08 22:52:13.264918612 -0400
++++ src/main/java/net/minecraft/commands/Commands.java	2026-06-30 20:04:58.304465064 -0400
+@@ -15,6 +15,9 @@
+ import com.mojang.brigadier.tree.CommandNode;
+ import com.mojang.brigadier.tree.RootCommandNode;
+ import com.mojang.logging.LogUtils;
++
++import me.alexcrossdev.hephaestus.commands.ServerCommand;
++
+ import java.util.HashMap;
+ import java.util.Map;
+ import java.util.Optional;
+@@ -298,6 +301,8 @@
+          PublishCommand.register(this.dispatcher);
+       }
+ 
++      ServerCommand.register(this.dispatcher);
++
+       this.dispatcher.setConsumer(ExecutionCommandSource.resultConsumer());
+    }
+ 
